@@ -41,8 +41,26 @@ body {
   .hero-content h2 { font-size: 1.5rem; color: #444; margin: 1rem 0; }
   .hero-content p { font-size: 1.2rem; color: #555; }
   .hero-buttons { margin-top: 2rem; }
-  .hero-img { flex-basis: 40%; }
+  .hero-img {
+    flex-basis: 40%;
+    position: relative;
+  }
+  .hero-img::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 320px;
+    height: 380px;
+    background: radial-gradient(ellipse at center, #e0deff 0%, #b3aaff 80%, transparent 100%);
+    filter: blur(36px);
+    z-index: 0;
+    border-radius: 50% / 45%;
+  }
   .hero-img img {
+    position: relative;
+    z-index: 1;
     width: 270px;
     height: 330px;
     object-fit: cover;
