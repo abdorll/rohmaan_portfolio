@@ -40,7 +40,16 @@ body {
   .hero-content .highlight { color: #6c63ff; }
   .hero-content h2 { font-size: 1.5rem; color: #444; margin: 1rem 0; }
   .hero-content p { font-size: 1.2rem; color: #555; }
-  .hero-buttons { margin-top: 2rem; }
+  .hero-buttons {
+    margin-top: 2rem;
+    display: flex;
+    gap: 2rem;
+    flex-direction: column;
+    gap: 1rem;
+    overflow-x: visible;
+    align-items: stretch;
+    margin-bottom: 2.5rem;
+  }
   .hero-img {
     flex-basis: 40%;
     position: relative;
@@ -61,10 +70,11 @@ body {
   .hero-img img {
     position: relative;
     z-index: 1;
-    width: 270px;
-    height: 330px;
+    width: 280px;
+    height: 340px;
     object-fit: cover;
-    margin-left: 80px;
+    margin-left: 0;
+    margin-bottom: 1.5rem;
     box-shadow: 0 4px 24px rgba(108,99,255,0.15);
   }
   .certificates, .articles, .contact {
@@ -160,9 +170,25 @@ body {
       height: auto;
       padding: 1rem;
     }
-    .hero { flex-direction: column; text-align: center; }
+    .hero { flex-direction: column-reverse; text-align: center; }
     .hero-content, .hero-img { max-width: 100%; flex-basis: 100%; }
     .hero-img img { width: 180px; height: 220px; margin-left: 0; }
+    .hero-buttons {
+      flex-direction: column;
+      gap: 1rem;
+      overflow-x: visible;
+      align-items: stretch;
+      margin-bottom: 2.5rem;
+    }
+    .hero-img::before {
+      box-shadow: none !important;
+      filter: none !important;
+      background: none !important;
+    }
+    nav ul { display: none; }
+    .hamburger { display: flex; }
+    .drawer, .drawer-overlay { display: block; }
+    nav .logo { display: none; }
   }
   .preview-btn {
     display: inline-block;
@@ -226,6 +252,7 @@ body {
   }
   .about-content {
     max-width: 600px;
+    text-align: left;
   }
   .about-content h2 {
     font-size: 2rem;
@@ -243,9 +270,15 @@ body {
       gap: 1.5rem;
     }
     .about-img img {
-      width: 180px;
-      height: 220px;
+      width: 260px;
+      height: 320px;
       margin-left: 0;
+    }
+    .about-content {
+      text-align: left;
+    }
+    .about-content p {
+      font-size: 0.98rem;
     }
   }
   .articles {
@@ -289,5 +322,92 @@ body {
     .article-card {
       height: auto;
       padding: 1rem;
+    }
+  }
+  /* Hamburger menu and drawer styles */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    z-index: 1201;
+    background: none;
+    border: none;
+  }
+  .hamburger span {
+    height: 4px;
+    width: 28px;
+    background: #6c63ff;
+    margin: 4px 0;
+    border-radius: 2px;
+    display: block;
+    transition: 0.3s;
+  }
+  .drawer-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.25);
+    z-index: 1200;
+  }
+  .drawer {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    height: 100vh;
+    width: 250px;
+    background: #fff;
+    box-shadow: 2px 0 16px rgba(108,99,255,0.10);
+    z-index: 1201;
+    flex-direction: column;
+    padding: 2rem 1.5rem;
+    transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+    transform: translateX(-100%);
+  }
+  .drawer.open {
+    display: flex;
+    transform: translateX(0);
+  }
+  .drawer .drawer-logo {
+    font-weight: bold;
+    font-size: 2rem;
+    color: #6c63ff;
+    margin-bottom: 0.2rem;
+  }
+  .drawer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .drawer ul li a {
+    color: #222;
+    font-size: 1.2rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .drawer ul li a:hover {
+    color: #6c63ff;
+  }
+  @media (max-width: 900px) {
+    nav ul { display: none; }
+    .hamburger { display: flex; }
+    .drawer, .drawer-overlay { display: block; }
+    nav .logo { display: none; }
+    .hero-buttons {
+      flex-direction: column;
+      gap: 1rem;
+      overflow-x: visible;
+      align-items: stretch;
+    }
+    .hero-img::before {
+      box-shadow: none !important;
+      filter: none !important;
+      background: none !important;
     }
   }

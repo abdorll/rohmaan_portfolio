@@ -34,3 +34,25 @@ modals.forEach(modal => {
     }
   });
 });
+
+// Drawer navigation for mobile/tablet
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const drawerNav = document.getElementById('drawerNav');
+const drawerOverlay = document.getElementById('drawerOverlay');
+
+if (hamburgerBtn && drawerNav && drawerOverlay) {
+  hamburgerBtn.addEventListener('click', () => {
+    drawerNav.classList.add('open');
+    drawerOverlay.style.display = 'block';
+  });
+  drawerOverlay.addEventListener('click', () => {
+    drawerNav.classList.remove('open');
+    drawerOverlay.style.display = 'none';
+  });
+  drawerNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      drawerNav.classList.remove('open');
+      drawerOverlay.style.display = 'none';
+    });
+  });
+}
